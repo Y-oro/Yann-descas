@@ -1,82 +1,92 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Yann Descas</title>
-    <link rel="stylesheet" href="output.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Yann Descas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-gray-800 font-sans p-6">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-sans">
 
-    <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold mb-2">Yann Descas</h1>
-        <p class="text-lg">Étudiant en 1ère année de Bachelor Cybersécurité à EPITA</p>
+  <div class="bg-white shadow-xl rounded-2xl w-full max-w-4xl p-6">
+    
+    <!-- Header -->
+    <header class="text-center mb-6">
+      <h1 class="text-4xl font-bold text-gray-800">Yann Descas</h1>
+      <p class="text-lg text-gray-600">Étudiant en 1ère année de Bachelor Cybersécurité à EPITA</p>
     </header>
 
-    <section class="mb-6">
-        <h2 class="text-2xl font-semibold mb-2">Coordonnées</h2>
-        <ul class="list-disc list-inside">
-            <li>📍 1 avenue des Champs-Élysées, Paris</li>
-            <li>📞 +33 6 06 06 06 06</li>
-            <li>📧 eptia.ionis@epita.fr</li>
-        </ul>
-    </section>
+    <!-- Tabs -->
+    <div class="flex border-b border-gray-300 mb-4">
+      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="coordonnees">Coordonnées</button>
+      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="apropos">À propos</button>
+      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="formation">Formation</button>
+      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="competences">Compétences</button>
+      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="projets">Projets</button>
+    </div>
 
-    <section class="mb-6">
-        <h2 class="text-2xl font-semibold mb-2">À propos de moi</h2>
+    <!-- Content -->
+    <div id="tab-content">
+      <div class="tab-panel" id="coordonnees">
+        <ul class="list-disc list-inside space-y-1">
+          <li>📍 1 avenue des Champs-Élysées, Paris</li>
+          <li>📞 +33 6 06 06 06 06</li>
+          <li>📧 eptia.ionis@epita.fr</li>
+        </ul>
+      </div>
+      <div class="tab-panel hidden" id="apropos">
         <p>
-            Autonome, calme et réfléchi, je recherche un stage dans le milieu de l’informatique,
-            et plus précisément en cybersécurité, afin d’approfondir mes connaissances théoriques
-            et d’acquérir une expérience concrète.
+          Autonome, calme et réfléchi, je recherche un stage dans le milieu de l’informatique,
+          et plus précisément en cybersécurité, afin d’approfondir mes connaissances théoriques
+          et d’acquérir une expérience concrète.
         </p>
-    </section>
-
-    <section class="mb-6">
-        <h2 class="text-2xl font-semibold mb-2">Formation</h2>
-        <p>Bachelor Cybersécurité (EPITA, École Polytechnique, Ministère des Armées) — 2022-2024</p>
-    </section>
-
-    <section class="mb-6">
-        <h2 class="text-2xl font-semibold mb-2">Diplômes</h2>
-        <ul class="list-disc list-inside">
-            <li>Baccalauréat Général — 2023</li>
-            <li>Spécialités : Mathématiques, NSI, Physique-Chimie</li>
+      </div>
+      <div class="tab-panel hidden" id="formation">
+        <ul class="list-disc list-inside space-y-1">
+          <li>Bachelor Cybersécurité (EPITA, École Polytechnique, Ministère des Armées) — 2022-2024</li>
+          <li>Baccalauréat Général — 2023</li>
+          <li>Spécialités : Mathématiques, NSI, Physique-Chimie</li>
         </ul>
-    </section>
-
-    <section class="mb-6">
-        <h2 class="text-2xl font-semibold mb-2">Compétences</h2>
-        <ul class="list-disc list-inside">
-            <li>Langages : C, Python, Bash</li>
-            <li>Cybersécurité : bases en réseau (Cisco), environnement Linux</li>
-            <li>Développement web : HTML/CSS, SQL</li>
-            <li>Certification PIX</li>
+      </div>
+      <div class="tab-panel hidden" id="competences">
+        <ul class="list-disc list-inside space-y-1">
+          <li>Langages : C, Python, Bash</li>
+          <li>Cybersécurité : bases en réseau (Cisco), environnement Linux</li>
+          <li>Développement web : HTML/CSS, SQL</li>
+          <li>Certification PIX</li>
         </ul>
-    </section>
-
-    <section class="mb-6">
-        <h2 class="text-2xl font-semibold mb-2">Projets</h2>
-        <ul class="list-disc list-inside">
-            <li>Développement d’un jeu 2D en Python</li>
-            <li>Sites web avec base de données</li>
-            <li>Calculatrice en C</li>
+      </div>
+      <div class="tab-panel hidden" id="projets">
+        <ul class="list-disc list-inside space-y-1">
+          <li>Développement d’un jeu 2D en Python</li>
+          <li>Sites web avec base de données</li>
+          <li>Calculatrice en C</li>
         </ul>
-    </section>
+      </div>
+    </div>
 
-    <section class="mb-6">
-        <h2 class="text-2xl font-semibold mb-2">Centres d’intérêt</h2>
-        <ul class="list-disc list-inside">
-            <li>🏀 Basket-ball</li>
-            <li>🏈 Football américain</li>
-            <li>🎮 Jeux vidéo</li>
-            <li>✈️ Voyages</li>
-        </ul>
-    </section>
+  </div>
 
-    <section class="mb-6">
-        <h2 class="text-2xl font-semibold mb-2">Langues</h2>
-        <p>Anglais — Niveau B1 (intermédiaire)</p>
-    </section>
+  <script>
+    const tabs = document.querySelectorAll(".tab-button");
+    const panels = document.querySelectorAll(".tab-panel");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        // Remove active classes
+        tabs.forEach(t => t.classList.remove("border-blue-500", "text-blue-500"));
+        panels.forEach(p => p.classList.add("hidden"));
+
+        // Add active to current
+        tab.classList.add("border-blue-500", "text-blue-500");
+        const target = tab.getAttribute("data-tab");
+        document.getElementById(target).classList.remove("hidden");
+      });
+    });
+
+    // Set default tab
+    tabs[0].click();
+  </script>
 
 </body>
 </html>
