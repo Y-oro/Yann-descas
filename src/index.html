@@ -1,92 +1,163 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" >
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Yann Descas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projet CV</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen font-sans">
+<body class="bg-gray-100 font-sans flex min-h-screen">
 
-  <div class="bg-white shadow-xl rounded-2xl w-full max-w-4xl p-6">
-    
-    <!-- Header -->
-    <header class="text-center mb-6">
-      <h1 class="text-4xl font-bold text-gray-800">Yann Descas</h1>
-      <p class="text-lg text-gray-600">Étudiant en 1ère année de Bachelor Cybersécurité à EPITA</p>
-    </header>
+  <!-- Sidebar -->
+  <nav class="w-64 bg-white border-r border-gray-300 flex flex-col">
+    <h1 class="text-2xl font-bold p-6 border-b border-gray-300">Menu</h1>
+    <ul class="flex flex-col gap-1 p-4">
+      <li>
+        <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 menu-btn" data-page="cv">CV</button>
+      </li>
+      <li>
+        <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 menu-btn" data-page="contact">Me Contact</button>
+      </li>
+      <li>
+        <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 menu-btn" data-page="questionnaire">Questionnaire</button>
+      </li>
+      <li>
+        <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 menu-btn" data-page="calculatrice">Calculatrice</button>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- Tabs -->
-    <div class="flex border-b border-gray-300 mb-4">
-      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="coordonnees">Coordonnées</button>
-      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="apropos">À propos</button>
-      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="formation">Formation</button>
-      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="competences">Compétences</button>
-      <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="projets">Projets</button>
-    </div>
+  <!-- Main content -->
+  <main class="flex-1 p-8 overflow-auto max-w-5xl">
 
-    <!-- Content -->
-    <div id="tab-content">
-      <div class="tab-panel" id="coordonnees">
-        <ul class="list-disc list-inside space-y-1">
-          <li>📍 1 avenue des Champs-Élysées, Paris</li>
-          <li>📞 +33 6 06 06 06 06</li>
-          <li>📧 eptia.ionis@epita.fr</li>
-        </ul>
+    <!-- CV content -->
+    <section id="cv" class="page hidden">
+      <div class="bg-white shadow-xl rounded-2xl w-full p-6">
+        <header class="text-center mb-6">
+          <h1 class="text-4xl font-bold text-gray-800">Yann Descas</h1>
+          <p class="text-lg text-gray-600">Étudiant en 1ère année de Bachelor Cybersécurité à EPITA</p>
+        </header>
+        <!-- Onglets et contenu CV ici (tu peux copier coller ton code onglets existant) -->
+        <!-- Exemple simplifié -->
+        <div class="flex border-b border-gray-300 mb-4">
+          <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-blue-500" data-tab="coordonnees">Coordonnées</button>
+          <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="apropos">À propos</button>
+          <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="formation">Formation</button>
+          <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="competences">Compétences</button>
+          <button class="tab-button px-4 py-2 font-medium text-gray-700 border-b-2 border-transparent hover:border-gray-400" data-tab="projets">Projets</button>
+        </div>
+        <div id="tab-content">
+          <div class="tab-panel" id="coordonnees">
+            <ul class="list-disc list-inside space-y-1">
+              <li>📍 1 avenue des Champs-Élysées, Paris</li>
+              <li>📞 +33 6 06 06 06 06</li>
+              <li>📧 eptia.ionis@epita.fr</li>
+            </ul>
+          </div>
+          <div class="tab-panel hidden" id="apropos">
+            <p>
+              Autonome, calme et réfléchi, je recherche un stage dans le milieu de l’informatique,
+              et plus précisément en cybersécurité, afin d’approfondir mes connaissances théoriques
+              et d’acquérir une expérience concrète.
+            </p>
+          </div>
+          <div class="tab-panel hidden" id="formation">
+            <ul class="list-disc list-inside space-y-1">
+              <li>Bachelor Cybersécurité (EPITA, École Polytechnique, Ministère des Armées) — 2022-2024</li>
+              <li>Baccalauréat Général — 2023</li>
+              <li>Spécialités : Mathématiques, NSI, Physique-Chimie</li>
+            </ul>
+          </div>
+          <div class="tab-panel hidden" id="competences">
+            <ul class="list-disc list-inside space-y-1">
+              <li>Langages : C, Python, Bash</li>
+              <li>Cybersécurité : bases en réseau (Cisco), environnement Linux</li>
+              <li>Développement web : HTML/CSS, SQL</li>
+              <li>Certification PIX</li>
+            </ul>
+          </div>
+          <div class="tab-panel hidden" id="projets">
+            <ul class="list-disc list-inside space-y-1">
+              <li>Développement d’un jeu 2D en Python</li>
+              <li>Sites web avec base de données</li>
+              <li>Calculatrice en C</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="tab-panel hidden" id="apropos">
-        <p>
-          Autonome, calme et réfléchi, je recherche un stage dans le milieu de l’informatique,
-          et plus précisément en cybersécurité, afin d’approfondir mes connaissances théoriques
-          et d’acquérir une expérience concrète.
-        </p>
-      </div>
-      <div class="tab-panel hidden" id="formation">
-        <ul class="list-disc list-inside space-y-1">
-          <li>Bachelor Cybersécurité (EPITA, École Polytechnique, Ministère des Armées) — 2022-2024</li>
-          <li>Baccalauréat Général — 2023</li>
-          <li>Spécialités : Mathématiques, NSI, Physique-Chimie</li>
-        </ul>
-      </div>
-      <div class="tab-panel hidden" id="competences">
-        <ul class="list-disc list-inside space-y-1">
-          <li>Langages : C, Python, Bash</li>
-          <li>Cybersécurité : bases en réseau (Cisco), environnement Linux</li>
-          <li>Développement web : HTML/CSS, SQL</li>
-          <li>Certification PIX</li>
-        </ul>
-      </div>
-      <div class="tab-panel hidden" id="projets">
-        <ul class="list-disc list-inside space-y-1">
-          <li>Développement d’un jeu 2D en Python</li>
-          <li>Sites web avec base de données</li>
-          <li>Calculatrice en C</li>
-        </ul>
-      </div>
-    </div>
+    </section>
 
-  </div>
+    <!-- Contact content -->
+    <section id="contact" class="page hidden">
+      <div class="bg-white shadow-xl rounded-2xl w-full p-6">
+        <h2 class="text-3xl font-bold mb-4">Contact</h2>
+        <p></p>
+      </div>
+    </section>
 
-  <script>
-    const tabs = document.querySelectorAll(".tab-button");
-    const panels = document.querySelectorAll(".tab-panel");
+    <!-- Questionnaire content -->
+    <section id="questionnaire" class="page hidden">
+      <div class="bg-white shadow-xl rounded-2xl w-full p-6">
+        <h2 class="text-3xl font-bold mb-4">Questionnaire</h2>
+        <p></p>
+      </div>
+    </section>
 
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        // Remove active classes
-        tabs.forEach(t => t.classList.remove("border-blue-500", "text-blue-500"));
-        panels.forEach(p => p.classList.add("hidden"));
+    <!-- Calculatrice content -->
+    <section id="calculatrice" class="page hidden">
+      <div class="bg-white shadow-xl rounded-2xl w-full p-6">
+        <h2 class="text-3xl font-bold mb-4">Calculatrice</h2>
+        <p></p>
+      </div>
+    </section>
 
-        // Add active to current
-        tab.classList.add("border-blue-500", "text-blue-500");
-        const target = tab.getAttribute("data-tab");
-        document.getElementById(target).classList.remove("hidden");
-      });
+  </main>
+
+<script>
+  // Gérer la navigation entre pages
+  const menuButtons = document.querySelectorAll('.menu-btn');
+  const pages = document.querySelectorAll('.page');
+
+  function setActivePage(pageId) {
+    pages.forEach(p => p.classList.add('hidden'));
+    document.getElementById(pageId).classList.remove('hidden');
+
+    menuButtons.forEach(btn => {
+      btn.classList.remove('bg-blue-200', 'text-blue-700', 'font-bold');
+      if(btn.dataset.page === pageId){
+        btn.classList.add('bg-blue-200', 'text-blue-700', 'font-bold');
+      }
     });
+  }
 
-    // Set default tab
-    tabs[0].click();
-  </script>
+  menuButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setActivePage(btn.dataset.page);
+    });
+  });
+
+  // Afficher la page CV par défaut
+  setActivePage('cv');
+
+
+  // Gestion onglets dans le CV
+  const tabs = document.querySelectorAll("#cv .tab-button");
+  const panels = document.querySelectorAll("#cv .tab-panel");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("border-blue-500", "text-blue-500"));
+      panels.forEach(p => p.classList.add("hidden"));
+
+      tab.classList.add("border-blue-500", "text-blue-500");
+      const target = tab.getAttribute("data-tab");
+      document.getElementById(target).classList.remove("hidden");
+    });
+  });
+
+  // Onglet CV par défaut
+  tabs[0].click();
+</script>
 
 </body>
 </html>
