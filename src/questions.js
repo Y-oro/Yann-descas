@@ -425,5 +425,35 @@ function stealAnswers() {
   loadQuestion(); // Affiche la dernière question avec la bonne réponse cochée
   showResults();  // Affiche les résultats avec 10/10
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const display = document.getElementById("calc-display");
+  const buttons = document.querySelectorAll(".calc-btn");
+  const clearBtn = document.getElementById("calc-clear");
+  const equalsBtn = document.getElementById("calc-equals");
+
+  let expression = "";
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      expression += btn.textContent;
+      display.value = expression;
+    });
+  });
+
+  clearBtn.addEventListener("click", () => {
+    expression = "";
+    display.value = "";
+  });
+
+  equalsBtn.addEventListener("click", () => {
+    try {
+      expression = eval(expression).toString();
+      display.value = expression;
+    } catch {
+      display.value = "Erreur";
+      expression = "";
+    }
+  });
+});
 
 

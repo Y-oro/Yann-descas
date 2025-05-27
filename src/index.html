@@ -18,7 +18,7 @@
         <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 menu-btn" data-page="questionnaire">Questionnaire</button>
       </li>
       <li>
-        <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus="ring-blue-400 menu-btn" data-page="calculatrice">Calculatrice</button>
+        <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 menu-btn" data-page="calculatrice">Calculatrice</button>
       </li>
       <li>
         <button
@@ -239,7 +239,37 @@
     <section id="calculatrice" class="page hidden">
       <div class="bg-white shadow-xl rounded-2xl w-full p-6">
         <h2 class="text-3xl font-bold mb-4">Calculatrice</h2>
-        <p>Le contenu de la calculatrice ira ici.</p>
+        <p>
+          <div class="max-w-sm mx-auto space-y-4">
+            <input id="calc-display" type="text" class="w-full p-3 border rounded text-right text-xl" readonly />
+
+            <div class="grid grid-cols-4 gap-2">
+              <button class="calc-btn">7</button>
+              <button class="calc-btn">8</button>
+              <button class="calc-btn">9</button>
+              <button class="calc-btn">/</button>
+
+              <button class="calc-btn">4</button>
+              <button class="calc-btn">5</button>
+              <button class="calc-btn">6</button>
+              <button class="calc-btn">*</button>
+
+              <button class="calc-btn">1</button>
+              <button class="calc-btn">2</button>
+              <button class="calc-btn">3</button>
+              <button class="calc-btn">-</button>
+
+              <button class="calc-btn">0</button>
+              <button class="calc-btn">.</button>
+              <button id="calc-clear" class="bg-yellow-300">C</button>
+              <button class="calc-btn">+</button>
+            </div>
+
+            <button id="calc-equals" class="w-full bg-blue-600 text-white py-3 rounded text-xl font-bold hover:bg-blue-700">
+              =
+            </button>
+          </div>
+          </p>
       </div>
     </section>
 
