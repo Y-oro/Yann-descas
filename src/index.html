@@ -20,6 +20,17 @@
       <li>
         <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus="ring-blue-400 menu-btn" data-page="calculatrice">Calculatrice</button>
       </li>
+      <li>
+        <button
+          id="contact-menu-btn"
+          class="w-full text-left px-4 py-2 rounded cursor-not-allowed opacity-50 hover:bg-gray-100"
+          title="Faites le quiz pour débloquer cette page"
+          disabled
+        >
+          Me Contacter
+        </button>
+      </li>
+
     </ul>
   </nav>
 
@@ -79,12 +90,37 @@
       </div>
     </section>
 
-    <section id="contact" class="page hidden">
-      <div class="bg-white shadow-xl rounded-2xl w-full p-6">
-        <h2 class="text-3xl font-bold mb-4">Contact</h2>
-        <p>Ceci est la page de contact.</p>
-      </div>
+    <section id="contact" class="hidden min-h-screen bg-white p-8">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Me contacter</h2>
+      <p class="text-center text-gray-600 mb-8">Remplissez le formulaire ci-dessous pour m’envoyer un message.</p>
+
+      <form class="max-w-2xl mx-auto bg-gray-50 p-6 rounded-xl shadow-md space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="prenom" class="block text-sm font-medium text-gray-700">Prénom</label>
+            <input type="text" id="prenom" name="prenom" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          </div>
+          <div>
+            <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
+            <input type="text" id="nom" name="nom" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          </div>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Adresse e-mail</label>
+          <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+          <textarea id="message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-200">
+            Envoyer
+          </button>
+        </div>
+      </form>
     </section>
+
 
     <section id="questionnaire" class="page hidden">
       <div class="bg-white shadow-xl rounded-2xl w-full p-6">
@@ -190,25 +226,59 @@
   // Gérer la navigation entre pages
   const menuButtons = document.querySelectorAll('.menu-btn');
   const pages = document.querySelectorAll('.page');
+  const contactSection = document.getElementById('contact');
 
   // Fonction pour activer une page et mettre à jour le menu
   window.setActivePage = function(pageId) {
+    // Masquer toutes les pages ET la section contact
     pages.forEach(p => p.classList.add('hidden'));
-    document.getElementById(pageId).classList.remove('hidden');
+    if (contactSection) {
+      contactSection.classList.add('hidden');
+    }
 
+    // Afficher la page demandée
+    if (pageId === 'contact') {
+      if (contactSection) {
+        contactSection.classList.remove('hidden');
+      }
+    } else {
+      const targetPage = document.getElementById(pageId);
+      if (targetPage) {
+        targetPage.classList.remove('hidden');
+      }
+    }
+
+    // Mettre à jour les styles du menu
     menuButtons.forEach(btn => {
       btn.classList.remove('bg-blue-200', 'text-blue-700', 'font-bold');
       if(btn.dataset.page === pageId){
         btn.classList.add('bg-blue-200', 'text-blue-700', 'font-bold');
       }
     });
+
+    // Gérer aussi le bouton contact s'il est activé
+    const contactMenuBtn = document.getElementById('contact-menu-btn');
+    if (contactMenuBtn && !contactMenuBtn.disabled) {
+      contactMenuBtn.classList.remove('bg-blue-200', 'text-blue-700', 'font-bold');
+      if (pageId === 'contact') {
+        contactMenuBtn.classList.add('bg-blue-200', 'text-blue-700', 'font-bold');
+      }
+    }
   };
 
+  // Ajouter les événements aux boutons du menu
   menuButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const pageId = btn.dataset.page;
       window.setActivePage(pageId);
     });
+  });
+
+  // Ajouter un événement au bouton contact (il sera activé dynamiquement par le quiz)
+  document.getElementById('contact-menu-btn').addEventListener('click', () => {
+    if (!document.getElementById('contact-menu-btn').disabled) {
+      window.setActivePage('contact');
+    }
   });
 
   // Afficher la page CV par défaut au chargement
@@ -228,10 +298,33 @@
       document.getElementById(target).classList.remove("hidden");
     });
   });
+  document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault(); // Empêche l'envoi réel
+
+    // Message de confirmation
+    const confirmation = document.createElement("p");
+    confirmation.textContent = "Votre message a bien été envoyé !";
+    confirmation.className = "text-green-600 text-center font-semibold mt-4";
+
+    // Supprime tout ancien message si présent
+    const oldMsg = this.querySelector(".confirmation-message");
+    if (oldMsg) oldMsg.remove();
+
+    confirmation.classList.add("confirmation-message");
+    this.appendChild(confirmation);
+
+    // Réinitialiser le formulaire
+    this.reset();
+
+    // Optionnel : supprimer le message après 5 secondes
+    setTimeout(() => {
+      confirmation.remove();
+    }, 5000);
+  });
+
 
   // Onglet CV par défaut
   tabs[0].click();
-
 </script>
 
 <script src="questions.js"></script>

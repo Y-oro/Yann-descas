@@ -248,18 +248,18 @@ function showResults() {
     scoreDisplay.classList.remove('text-red-500', 'text-yellow-500');
     scoreDisplay.classList.add('text-green-500');
 
-    // Affiche la section "Me Contacter" et redirige
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-        contactSection.classList.remove('hidden'); // Rend la section visible
+    // CORRECTION : Ne pas afficher automatiquement la section contact
+    // On active seulement le bouton dans le menu
+    const contactMenuBtn = document.getElementById('contact-menu-btn');
+    if (contactMenuBtn) {
+        contactMenuBtn.disabled = false;
+        contactMenuBtn.classList.remove('cursor-not-allowed', 'opacity-50');
+        contactMenuBtn.classList.add('cursor-pointer', 'hover:bg-blue-100', 'active:bg-blue-200', 'focus:outline-none', 'focus:ring-2', 'focus:ring-blue-400', 'menu-btn');
+        contactMenuBtn.title = "Accéder à la page Me Contacter";
+        contactMenuBtn.setAttribute('data-page', 'contact');
 
-        // Redirige automatiquement vers la page de contact
-        if (typeof window.setActivePage === 'function') {
-            alert("Félicitations ! Vous avez obtenu 10/10 au quiz. La page 'Me Contacter' est maintenant accessible et vous y êtes redirigé !");
-            window.setActivePage('contact');
-        }
-    } else {
-        console.error("La section 'contact' n'a pas été trouvée dans le DOM.");
+        // Message de félicitations
+        alert("Félicitations ! Vous avez obtenu 10/10 au quiz. La page 'Me Contacter' est maintenant accessible dans le menu !");
     }
 
   } else if (percentage >= 70) {
@@ -294,10 +294,14 @@ window.resetQuiz = function() { // IMPORTANT: Rendre la fonction globale avec 'w
   userAnswers = {};
   score = 0;
 
-  // Masque la section "Me Contacter" si le quiz est réinitialisé
-  const contactSection = document.getElementById('contact');
-  if (contactSection) {
-      contactSection.classList.add('hidden');
+  // CORRECTION : Remettre le bouton contact en état désactivé
+  const contactMenuBtn = document.getElementById('contact-menu-btn');
+  if (contactMenuBtn) {
+      contactMenuBtn.disabled = true;
+      contactMenuBtn.classList.add('cursor-not-allowed', 'opacity-50');
+      contactMenuBtn.classList.remove('cursor-pointer', 'hover:bg-blue-100', 'active:bg-blue-200', 'focus:outline-none', 'focus:ring-2', 'focus:ring-blue-400', 'menu-btn');
+      contactMenuBtn.title = "Faites le quiz pour débloquer cette page";
+      contactMenuBtn.removeAttribute('data-page');
   }
 
   if (document.getElementById('question-container')) document.getElementById('question-container').classList.remove('hidden');
