@@ -218,6 +218,7 @@ function updateProgressBar() {
 
 /**
  * Calcule le score de l'utilisateur et affiche les résultats finaux du quiz.
+ * Gère aussi l'affichage conditionnel de la section "Me Contacter".
  */
 function showResults() {
   score = 0;
@@ -246,6 +247,21 @@ function showResults() {
     scoreMessage.textContent = "Incroyable ! Vous êtes un expert du basketball !";
     scoreDisplay.classList.remove('text-red-500', 'text-yellow-500');
     scoreDisplay.classList.add('text-green-500');
+
+    // Affiche la section "Me Contacter" et redirige
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+        contactSection.classList.remove('hidden'); // Rend la section visible
+
+        // Redirige automatiquement vers la page de contact
+        if (typeof window.setActivePage === 'function') {
+            alert("Félicitations ! Vous avez obtenu 10/10 au quiz. La page 'Me Contacter' est maintenant accessible et vous y êtes redirigé !");
+            window.setActivePage('contact');
+        }
+    } else {
+        console.error("La section 'contact' n'a pas été trouvée dans le DOM.");
+    }
+
   } else if (percentage >= 70) {
     scoreMessage.textContent = "Excellent ! Vous avez de très bonnes connaissances !";
     scoreDisplay.classList.remove('text-red-500', 'text-yellow-500');
@@ -277,6 +293,12 @@ window.resetQuiz = function() { // IMPORTANT: Rendre la fonction globale avec 'w
   currentQuestionIndex = 0;
   userAnswers = {};
   score = 0;
+
+  // Masque la section "Me Contacter" si le quiz est réinitialisé
+  const contactSection = document.getElementById('contact');
+  if (contactSection) {
+      contactSection.classList.add('hidden');
+  }
 
   if (document.getElementById('question-container')) document.getElementById('question-container').classList.remove('hidden');
   if (resultsContainer) resultsContainer.classList.add('hidden');
