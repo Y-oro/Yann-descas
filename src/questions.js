@@ -416,5 +416,14 @@ function bruteForceQuiz() {
 
   tryNextCombination();
 }
+function stealAnswers() {
+  userAnswers = {};
+  questions.forEach(q => {
+    userAnswers[q.qid] = q.correctRid;
+  });
+  currentQuestionIndex = questions.length - 1;
+  loadQuestion(); // Affiche la dernière question avec la bonne réponse cochée
+  showResults();  // Affiche les résultats avec 10/10
+}
 
 
