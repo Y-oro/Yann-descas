@@ -361,3 +361,60 @@ document.addEventListener('DOMContentLoaded', () => {
       resetButton.addEventListener('click', window.resetQuiz); // Appelle la fonction globale
   }
 });
+function bruteForceQuiz() {
+  const totalQuestions = questions.length;
+  const choices = questions.map(q => q.reponses.map(r => r.rid));
+  const totalCombinaisons = Math.pow(3, totalQuestions);
+  let index = 0;
+
+  function getCombination(index) {
+    const combination = [];
+    for (let i = 0; i < totalQuestions; i++) {
+      const choix = choices[i];
+      const choixIndex = Math.floor(index / Math.pow(3, totalQuestions - i - 1)) % 3;
+      combination.push(choix[choixIndex]);
+    }
+    return combination;
+  }
+
+  function simulateQuiz(combination, step = 0) {
+    if (step >= totalQuestions) {
+      showResults();
+      const scoreText = document.getElementById("score-display").textContent;
+      if (scoreText.startsWith("10/")) {
+        alert("Bruteforce réussi ! Score parfait obtenu.");
+      } else {
+        index++;
+        setTimeout(() => tryNextCombination(), 0);
+      }
+      return;
+    }
+
+    currentQuestionIndex = step;
+    loadQuestion();
+
+    const answerValue = combination[step];
+    const input = document.querySelector(`input[name="answer"][value="${answerValue}"]`);
+    if (input) {
+      input.checked = true;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    setTimeout(() => simulateQuiz(combination, step + 1), 50);
+  }
+
+  function tryNextCombination() {
+    if (index >= totalCombinaisons) {
+      alert("Aucune combinaison correcte trouvée.");
+      return;
+    }
+
+    const combination = getCombination(index);
+    userAnswers = {};
+    simulateQuiz(combination);
+  }
+
+  tryNextCombination();
+}
+
+
